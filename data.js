@@ -42,7 +42,7 @@ var data = {
     },
     j: {
       width: 6,
-      path: "M4 0 v9 h-2 v-1 h-2 v2 h1 v1 h1 v1 h2 v-1 h1 v-1 h1 v-10 z"
+      path: "M4 0 h2 v10 h-1 v1 h-1 v1 h-2 v-1 h-1 v-1 h-1 v-2 h2 v1 h2 z"
     },
     k: {
       width: 8,
@@ -114,13 +114,6 @@ var data = {
     }
   },
   svg: {
-    head: `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    version="1.1" baseProfile="full"
-    width="1000mm" height="500mm"
-    viewBox="0 0 200 100">`,
-    body: "</svg>",
     box: "M0 0 h16 v16 h-16 z M1 1 v14 h14 v-14 z"
   }
 }

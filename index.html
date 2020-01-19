@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>LogoGenerator</title>
-  </head>
-  <body>
-    <textarea id="text" onchange="generate();"></textarea>
-    <input id="color" type="color" onchange="generate();"><br>
-    <svg id="result" width="1000px" height="1000px"></svg>
-    <script src="data.js"></script>
-    <script src="index.js"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>LogoGenerator</title>
+</head>
+
+<body>
+  <textarea id="text" oninput="generate();" placeholder="Text"></textarea><br>
+
+  <label>
+    <input id="color" type="color" onchange="generate();">
+    Box color
+  </label><br>
+
+  <label>
+    <input id="textcolor" type="color" onchange="generate();">
+    Text color
+  </label><br>
+
+
+  <label>
+    <input id="bgcolor" type="color" onchange="generate();" value="#ffffff">
+    Background color
+  </label>
+  <label>
+    <input id="showbgcolor" type="checkbox" onchange="generate();">
+    Show?
+  </label><br>
+  <a id="png" download="logo.png">Download as PNG</a><br>
+
+  <svg id="result"></svg>
+  <script src="data.js"></script>
+  <script src="index.js"></script>
+</body>
+
 </html>
