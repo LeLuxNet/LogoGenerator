@@ -1,20 +1,17 @@
-var textField = document.getElementById("text");
-var colorField = document.getElementById("color");
-var bgColorField = document.getElementById("bgcolor");
-var showBgColorField = document.getElementById("showbgcolor");
-var textColorField = document.getElementById("textcolor");
-var resultField = document.getElementById("result");
-var pngField = document.getElementById("png");
+var textField = document.querySelector("#text");
+var colorField = document.querySelector("#color");
+var bgColorField = document.querySelector("#bgcolor");
+var showBgColorField = document.querySelector("#showbgcolor");
+var textColorField = document.querySelector("#textcolor");
+var resultField = document.querySelector("#result");
+var resolutionField = document.querySelector("#resolution")
+var pngField = document.querySelector("#png");
 
 function generate() {
   var text = textField.value.toLowerCase();
 
   var result = "";
-
-  if (text.length < 2) {
-
-  } else {
-
+  if (text.length > 2) {
     var chars = [];
 
     for (var i = 0; i < text.length; i++) {
@@ -51,7 +48,7 @@ function generate() {
 
     var x = 17;
     var y = 2;
-    var maxX = 16;
+    var realX = 16;
 
     chars.forEach((i) => {
       if (i === "\n") {
@@ -60,18 +57,30 @@ function generate() {
       } else {
         result += getChar(x, y, i);
         var x2 = x + i.width;
-        if (maxX < x2) {
-          maxX = x2;
+        if (realX < x2) {
+          realX = x2;
         }
         x += i.width + 1;
       }
     });
-
     result += "</g>";
-  }
-  resultField.innerHTML = result;
 
-  svg2File(maxX, (y === 2) ? 16 : (y + 12), 10);
+    resultField.innerHTML = result;
+
+    var realY = (y === 2) ? 16 : (y + 12);
+
+    var mult = resolutionField.selectedIndex === -1 ? 1 :
+      resolutionField.options[resolutionField.selectedIndex].value;
+    var resolutionResult = "";
+    for (var i = 1; i <= 100; i++) {
+      resolutionResult += "<option value=\"" + i + "\"" +
+        (i == mult ? " selected" : "") + ">" + i + "x (" +
+        (realX * i) + "x" + (realY * i) + ")</option>";
+    }
+    resolutionField.innerHTML = resolutionResult;
+
+    svg2File(realX, realY, mult);
+  }
 }
 
 function getChar(x, y, char) {
