@@ -11,7 +11,7 @@ function generate() {
   var text = textField.value.toLowerCase();
 
   var result = "";
-  if (text.length > 2) {
+  if (text.length >= 2) {
     var chars = [];
 
     for (var i = 0; i < text.length; i++) {
