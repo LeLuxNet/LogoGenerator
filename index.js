@@ -1,14 +1,5 @@
-var textField = document.querySelector("#text");
-var colorField = document.querySelector("#color");
-var bgColorField = document.querySelector("#bgcolor");
-var showBgColorField = document.querySelector("#showbgcolor");
-var textColorField = document.querySelector("#textcolor");
-var resultField = document.querySelector("#result");
-var resolutionField = document.querySelector("#resolution")
-var pngField = document.querySelector("#png");
-
 function generate() {
-  var text = textField.value.toLowerCase();
+  var text = $("#text")[0].value.toLowerCase();
 
   var result = "";
   if (text.length >= 2) {
@@ -24,12 +15,12 @@ function generate() {
       chars.push(obj);
     }
 
-    if (showBgColorField.checked) {
-      result += "<rect width=\"100%\" height=\"100%\" fill=\"" +
-        bgColorField.value + "\"/>";
+    if ($("#show-bg-color")[0].checked) {
+      result += '<rect width="100%" height="100%" fill="' +
+        $("#bg-color")[0].value + "\"/>";
     }
-    result += "<g id=\"svg-root\" fill=\"" + textColorField.value +
-      "\"><path d=\"" + data.svg.box + "\" fill=\"" + colorField.value + "\"/>";
+    result += '<g id="svg-root" fill="' + $("#text-color")[0].value +
+      '"><path d="' + data.svg.box + '" fill="' + $("#color")[0].value + '"/>';
 
     var char1 = chars.shift();
     var char2 = chars.shift();
@@ -65,35 +56,38 @@ function generate() {
     });
     result += "</g>";
 
-    resultField.innerHTML = result;
+    $("#processing")[0].innerHTML = result;
 
     var realY = (y === 2) ? 16 : (y + 12);
 
+    var resolutionField = $("#resolution")[0];
     var mult = resolutionField.selectedIndex === -1 ? 1 :
       resolutionField.options[resolutionField.selectedIndex].value;
     var resolutionResult = "";
     for (var i = 1; i <= 100; i++) {
-      resolutionResult += "<option value=\"" + i + "\"" +
+      resolutionResult += '<option value="' + i + '"' +
         (i == mult ? " selected" : "") + ">" + i + "x (" +
         (realX * i) + "x" + (realY * i) + ")</option>";
     }
     resolutionField.innerHTML = resolutionResult;
+    $(".show-download").forEach(e => e.classList.remove("hidden"));
 
-    svg2File(realX, realY, mult);
+    svg2File(realX, realY, 10, (data) => $("#result")[0].src = data);
+    svg2File(realX, realY, mult, (data) => $("#png")[0].href = data);
   }
 }
 
 function getChar(x, y, char) {
-  return "<g transform=\"translate(" + x + ", " + y + ")\"><path d=\"" +
-    char.path + "\"/></g>";
+  return '<g transform="translate(' + x + ', ' + y + ')"><path d="' +
+    char.path + '"/></g>';
 }
 
-function svg2File(oldW, oldH, mult) {
+function svg2File(oldW, oldH, mult, callback) {
   var w = oldW * mult;
   var h = oldH * mult;
 
   var img = document.createElement("img");
-  var svgNode = resultField.cloneNode(true);
+  var svgNode = $("#processing")[0].cloneNode(true);
   svgNode.getElementById("svg-root").setAttribute("transform",
     "scale(" + mult + ")");
   var svg = new XMLSerializer().serializeToString(svgNode);
@@ -105,6 +99,6 @@ function svg2File(oldW, oldH, mult) {
   canvas.height = h;
   img.onload = function() {
     canvas.getContext("2d").drawImage(img, 0, 0, w, h);
-    pngField.href = canvas.toDataURL("image/png");
+    callback(canvas.toDataURL("image/png"));
   }
 };
