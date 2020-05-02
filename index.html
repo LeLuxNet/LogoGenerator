@@ -5,55 +5,68 @@
   <meta charset="utf-8">
   <title>Logogenerator</title>
   <link rel="stylesheet" href="https://cdn.lelux.net/design/0.0.0.4/min.css">
+  <style>
+    .col {
+      max-width: 45%;
+      align-self: stretch;
+      display: flex;
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
     <h1 class="title">Logo<wbr>generator</h1>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <h2>Name</h2>
+          <p class="tooltip">Der Name der Software</p>
+          <p><input class="width-100-pc" id="text" oninput="generate();" placeholder="Text"></p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <h2>Boxfarbe</h2>
+          <p class="tooltip">Die Farbe der Box, die den Text umrandet</p>
+          <p><input class="width-100-pc" id="color" type="color" onchange="generate();"></p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <h2>Textfarbe</h2>
+          <p class="tooltip">Die Farbe des Textes in der Box</p>
+          <p><input class="width-100-pc" id="textcolor" type="color" onchange="generate();"></p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <h2>Hinter<wbr>grund<wbr>farbe</h2>
+          <p class="tooltip">Die Farbe im Hintergrund der Box</p>
+          <p><input class="width-100-pc" id="bgcolor" type="color" onchange="generate();" value="#ffffff"></p>
+          <p style="align-items:center;flex-direction:row;display:flex;flex-shrink:0;flex-grow:0">
+            <input id="showbgcolor" type="checkbox" onchange="generate();">
+            <span style="margin-left:10px">Hintergrundfarbe anzeigen</span>
+          </p>
+        </div>
+      </div>
+    </div>
     <section>
-      <h2>Name</h2>
-      <p class="tooltip">Der Name der Software</p>
-      <p><input class="width-100-pc" id="text" oninput="generate();" placeholder="Text"></p>
-    </section>
-    <section>
-      <h2>Boxfarbe</h2>
-      <p class="tooltip">Die Farbe der Box, die den Text umrandet</p>
-      <p><input class="width-100-pc" id="color" type="color" onchange="generate();"></p>
-    </section>
-    <section>
-      <h2>Textfarbe</h2>
-      <p class="tooltip">Die Farbe des Textes in der Box</p>
-      <p><input class="width-100-pc" id="textcolor" type="color" onchange="generate();"></p>
-    </section>
-    <section>
-      <h2>Hintergrundfarbe</h2>
-      <p class="tooltip">Die Farbe im Hintergrund der Box</p>
-      <p><input class="width-100-pc" id="bgcolor" type="color" onchange="generate();" value="#ffffff"></p>
-      <p style="align-items:center;flex-direction:row;display:flex">
-        <input id="showbgcolor" type="checkbox" onchange="generate();">
-        <span style="margin-left:10px">Hintergrundfarbe anzeigen</span>
-      </p>
-    </section>
-    <section>
-      <h2>Aufl&ouml;sung</h2>
-      <p class="tooltip">Welche Dimensionen?</p>
-      <p><select class="width-100-pc" id="resolution" type="options" onchange="generate();"></select></p>
+      <h2>Ergebnis</h2>
+      <svg id="result"></svg>
     </section>
     <section>
       <h2>Download</h2>
       <p><a href="logo.png" id="png" download>Als PNG herunterladen</a></p>
     </section>
-    <section>
-      <h2>Ergebnis</h2>
-      <svg id="result"></svg>
+    <section style="display:none">
+      <h2>Aufl&ouml;sung</h2>
+      <p class="tooltip">Welche Dimensionen?</p>
+      <p><select class="width-100-pc" id="resolution" type="options" onchange="generate();"></select></p>
     </section>
   </div>
   <script src="data.js"></script>
   <script src="index.js"></script>
-  <script>
-
-    document.querySelector('.tooltip')
-  </script>
 </body>
 
 </html>
