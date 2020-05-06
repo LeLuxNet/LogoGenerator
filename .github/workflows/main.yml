@@ -8,7 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: LeLuxNet/GitPullApi-GitHub-Action@v1
+    - uses: LeLuxNet/GitPullApi-GitHub-Action@master
       with:
         repository: logogenerator
         token: ${{ secrets.Token }}
