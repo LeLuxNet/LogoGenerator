@@ -87,7 +87,7 @@ function svg2File(oldW, oldH, mult, callback) {
   var h = oldH * mult;
 
   var img = document.createElement("img");
-  var svgNode = $("#processing")[0].cloneNode(true);
+  var svgNode = $("#processing").cloneNode(true);
   svgNode.getElementById("svg-root").setAttribute("transform",
     "scale(" + mult + ")");
   var svg = new XMLSerializer().serializeToString(svgNode);
