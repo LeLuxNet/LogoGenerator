@@ -4,21 +4,12 @@
 <head>
   <meta charset="utf-8">
   <title>Logogenerator</title>
-  <link rel="stylesheet" href="https://cdn.lelux.net/design/0.0.0.4/min.css">
+  <link rel="stylesheet" href="https://cdn.lelux.net/design/0.0.5/min.css">
   <style>
     .col {
       max-width: 45%;
       align-self: stretch;
       display: flex;
-    }
-
-    textarea {
-      resize: none;
-      height: 70px;
-    }
-
-    .hidden {
-      display: none;
     }
   </style>
 </head>
@@ -31,28 +22,28 @@
         <div class="card">
           <h2>Name</h2>
           <p class="tooltip">Der Name der Software</p>
-          <p><textarea class="width-100-pc" id="text" oninput="generate();" placeholder="Text"></textarea></p>
+          <p><textarea class="width-100" id="text" oninput="generate();" placeholder="Text"></textarea></p>
         </div>
       </div>
       <div class="col">
         <div class="card">
           <h2>Boxfarbe</h2>
           <p class="tooltip">Die Farbe der Box, die den Text umrandet</p>
-          <p><input class="width-100-pc" id="color" type="color" onchange="generate();"></p>
+          <p><input class="width-100" id="color" type="color" onchange="generate();"></p>
         </div>
       </div>
       <div class="col">
         <div class="card">
           <h2>Textfarbe</h2>
           <p class="tooltip">Die Farbe des Textes in der Box</p>
-          <p><input class="width-100-pc" id="text-color" type="color" onchange="generate();"></p>
+          <p><input class="width-100" id="text-color" type="color" onchange="generate();"></p>
         </div>
       </div>
       <div class="col">
         <div class="card">
           <h2>Hinter<wbr>grund</h2>
           <p class="tooltip">Die Farbe im Hintergrund der Box</p>
-          <p><input class="width-100-pc" id="bg-color" type="color" onchange="generate();" value="#ffffff"></p>
+          <p><input class="width-100" id="bg-color" type="color" onchange="generate();" value="#ffffff"></p>
           <p style="align-items:center;flex-direction:row;display:flex;flex-shrink:0;flex-grow:0">
             <input id="show-bg-color" type="checkbox" onchange="generate();">
             <span style="margin-left:10px">Hintergrundfarbe anzeigen</span>
@@ -76,7 +67,7 @@
     </section>
   </div>
   <script src="data.js"></script>
-  <script src="https://cdn.lelux.net/design/0.0.0.4/min.js"></script>
+  <script src="https://cdn.lelux.net/design/0.0.5/min.js"></script>
   <script src="index.js"></script>
 </body>
 

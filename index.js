@@ -1,5 +1,5 @@
 function generate() {
-  var text = $("#text")[0].value.toLowerCase();
+  var text = $("#text").value.toLowerCase();
 
   var result = "";
   if (text.length >= 2) {
@@ -15,12 +15,12 @@ function generate() {
       chars.push(obj);
     }
 
-    if ($("#show-bg-color")[0].checked) {
+    if ($("#show-bg-color").checked) {
       result += '<rect width="100%" height="100%" fill="' +
-        $("#bg-color")[0].value + "\"/>";
+        $("#bg-color").value + "\"/>";
     }
-    result += '<g id="svg-root" fill="' + $("#text-color")[0].value +
-      '"><path d="' + data.svg.box + '" fill="' + $("#color")[0].value + '"/>';
+    result += '<g id="svg-root" fill="' + $("#text-color").value +
+      '"><path d="' + data.svg.box + '" fill="' + $("#color").value + '"/>';
 
     var char1 = chars.shift();
     var char2 = chars.shift();
@@ -56,11 +56,11 @@ function generate() {
     });
     result += "</g>";
 
-    $("#processing")[0].innerHTML = result;
+    $("#processing").innerHTML = result;
 
     var realY = (y === 2) ? 16 : (y + 12);
 
-    var resolutionField = $("#resolution")[0];
+    var resolutionField = $("#resolution");
     var mult = resolutionField.selectedIndex === -1 ? 1 :
       resolutionField.options[resolutionField.selectedIndex].value;
     var resolutionResult = "";
@@ -70,10 +70,10 @@ function generate() {
         (realX * i) + "x" + (realY * i) + ")</option>";
     }
     resolutionField.innerHTML = resolutionResult;
-    $(".show-download").forEach(e => e.classList.remove("hidden"));
+    $$(".show-download").forEach(e => e.classList.remove("hidden"));
 
-    svg2File(realX, realY, 10, (data) => $("#result")[0].src = data);
-    svg2File(realX, realY, mult, (data) => $("#png")[0].href = data);
+    svg2File(realX, realY, 10, (data) => $("#result").src = data);
+    svg2File(realX, realY, mult, (data) => $("#png").href = data);
   }
 }
 
