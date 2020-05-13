@@ -12,7 +12,9 @@ function generate() {
       } else {
         var obj = data.chars[char];
       }
-      chars.push(obj);
+      if (obj != null) {
+        chars.push(obj);
+      }
     }
 
     if ($("#show-bg-color").checked) {
